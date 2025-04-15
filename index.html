@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>ShopEase - E-commerce Store</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="plugin.js"></script>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+
+    <body class="bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 min-h-screen flex flex-col">
+
+
+        <!-- Header Navigation -->
+        <header class="sticky top-0 z-30 bg-white dark:bg-gray-900 shadow-sm dark:shadow-gray-800 py-4">
+            <div class="container mx-auto px-4 flex justify-between items-center">
+                <a href="#" class="text-xl font-bold text-primary dark:text-primary-light">ShopEase</a>
+
+                <div class="flex items-center space-x-4">
+                    <div class="relative">
+                        <button id="cartButton"
+                            class="p-2 text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary-light relative">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                            </svg>
+                            <span id="cartBadge"
+                                class="cart-badge bg-primary text-white text-xs font-bold flex items-center justify-center">0</span>
+                        </button>
+                    </div>
+
+                    <!--Profile icon-->
+                    <div class="relative">
+                        <button id="profileButton"
+                            class="p-2 text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary-light relative">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 14c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-3.33 0-10 1.67-10 5v2h20v-2c0-3.33-6.67-5-10-5z" />
+                            </svg>
+                        </button>
+                    </div>
+
+                    <button id="themeToggle"
+                        class="p-2 text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary-light">
+                        <svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                        </svg>
+                        <svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hidden" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="flex-grow">
+            <!-- Search and Filter Bar -->
+            <div class="sticky top-16 z-20 bg-white dark:bg-gray-900 pt-4 pb-2 shadow-sm dark:shadow-gray-800">
+                <div class="container mx-auto px-4">
+                    <div class="flex flex-col md:flex-row space-y-3 md:space-y-0 md:space-x-4">
+                        <div class="flex-grow relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none"
+                                    viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                </svg>
+                            </div>
+                            <input id="searchInput" type="text"
+                                class="pl-10 pr-4 py-2 w-full border rounded-lg border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-primary-light text-base"
+                                placeholder="Search products...">
+                        </div>
+                        <div class="flex space-x-2">
+                            <select id="sortSelect"
+                                class="px-4 py-2 border rounded-lg border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-primary-light text-base">
+                                <option value="default">Sort By</option>
+                                <option value="price-low">Price: Low to High</option>
+                                <option value="price-high">Price: High to Low</option>
+                                <option value="name-asc">Name: A to Z</option>
+                                <option value="name-desc">Name: Z to A</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Categories -->
+                    <div class="categories-container mt-4 flex space-x-2 overflow-x-auto pb-2">
+                        <button class="category-btn px-4 py-2 rounded-full bg-primary text-white whitespace-nowrap"
+                            data-category="">All Products</button>
+                        <button
+                            class="category-btn px-4 py-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 whitespace-nowrap"
+                            data-category="Electronics">Electronics</button>
+                        <button
+                            class="category-btn px-4 py-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 whitespace-nowrap"
+                            data-category="clothing">Clothing</button>
+                        <button
+                            class="category-btn px-4 py-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 whitespace-nowrap"
+                            data-category="home">Home & Kitchen</button>
+                        <button
+                            class="category-btn px-4 py-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 whitespace-nowrap"
+                            data-category="beauty">Beauty</button>
+                        <button
+                            class="category-btn px-4 py-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 whitespace-nowrap"
+                            data-category="books">Books</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product Listing -->
+            <section class="py-8">
+                <div class="container mx-auto px-4">
+                    <h2 class="text-2xl font-bold mb-6" id="productHeading">All Products</h2>
+
+                    <div id="productsContainer"
+                        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                        <!-- Products will be dynamically inserted here -->
+                    </div>
+
+                    <!-- Empty state -->
+                    <div id="emptyState" class="hidden text-center py-12">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mx-auto text-gray-400" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <h3 class="text-xl font-medium mt-4">No products found</h3>
+                        <p class="text-gray-500 dark:text-gray-400 mt-2">Try adjusting your search or filter criteria
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Product Detail Modal -->
+            <div id="productModal" class="fixed inset-0 z-50 flex items-center justify-center hidden">
+                <div class="absolute inset-0 bg-black bg-opacity-50" id="modalOverlay"></div>
+                <div
+                    class="bg-white dark:bg-gray-800 rounded-lg max-w-lg w-full mx-4 max-h-[90vh] overflow-y-auto z-10 animate-fade-in">
+                    <div class="p-6" id="modalContent">
+                        <!-- Modal content will be inserted here -->
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!--Profile Drawer-->
+            <div id="loginModal" class="fixed inset-0 z-50 flex items-center justify-center hidden">
+                <div class="absolute inset-0 bg-black bg-opacity-50" id="checkoutOverlay"></div>
+                <div
+                    class="bg-white dark:bg-gray-800 rounded-lg max-w-lg w-full mx-4 max-h-[90vh] overflow-y-auto z-10 animate-fade-in">
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-6">
+                            <h2 class="text-xl font-bold">Login</h2>
+                            <button id="closeloginButton"
+                                class="p-1 text-gray-500 hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-100">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </button>
+                        </div>
+                        <form id="checkoutForm" class="space-y-4">
+                            <div class="space-y-4">
+
+                                <div>
+                                    <label for="email" class="block text-sm font-medium mb-1">Email</label>
+                                    <input type="email" id="email" name="email"
+                                        class="w-full px-4 py-2 border rounded-lg border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-primary-light text-base"
+                                        required>
+                                </div>
+                                <div>
+                                    <label for="password" class="block text-sm font-medium mb-1">Password</label>
+                                    <input type="password" id="password" name="password"
+                                        class="w-full px-4 py-2 border rounded-lg border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-primary-light text-base"
+                                        required>
+                                </div>
+                            </div>
+                            <button type="submit"
+                                class="w-full py-3 bg-primary hover:bg-primary-dark text-white rounded-lg transition mt-6">
+                                LogIn
+                            </button>
+                        </form>
+                        <p class="block text-sm font-medium mt-5">Don't have an account yet?<button id="ent"
+                                class="bg-primary hover:bg-primary-dark p-2 m-2 rounded-lg transition">Sign
+                                Up</button>
+                        </p>
+
+                    </div>
+
+                </div>
+            </div>
+
+
+
+
+            <!--SIgn up-->
+            <div id="SignupModal" class="fixed inset-0 z-50 flex items-center justify-center hidden">
+                <div class="absolute inset-0 bg-black bg-opacity-50" id="checkoutOverlay"></div>
+                <div
+                    class="bg-white dark:bg-gray-800 rounded-lg max-w-lg w-full mx-4 max-h-[90vh] overflow-y-auto z-10 animate-fade-in">
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-6">
+                            <h2 class="text-xl font-bold">Sign Up</h2>
+                            <button id="closeSignupButton"
+                                class="p-1 text-gray-500 hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-100">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </button>
+                        </div>
+                        <form id="checkoutForm" class="space-y-4">
+                            <div class="space-y-4">
+                                <div>
+                                    <label for="user" class="block text-sm font-medium mb-1">Username</label>
+                                    <input type="text" id="user" name="user"
+                                        class="w-full px-4 py-2 border rounded-lg border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-primary-light text-base"
+                                        required>
+                                </div>
+
+                                <div>
+                                    <label for="email" class="block text-sm font-medium mb-1">Email</label>
+                                    <input type="email" id="email" name="email"
+                                        class="w-full px-4 py-2 border rounded-lg border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-primary-light text-base"
+                                        required>
+                                </div>
+                                <div>
+                                    <label for="password" class="block text-sm font-medium mb-1">Password</label>
+                                    <input type="password" id="password1" name="password"
+                                        class="w-full px-4 py-2 border rounded-lg border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-primary-light text-base"
+                                        required>
+                                </div>
+                                <div>
+                                    <label for="password" class="block text-sm font-medium mb-1">Password
+                                        Confarmation</label>
+                                    <input type="password" id="password" name="password"
+                                        class="w-full px-4 py-2 border rounded-lg border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-primary-light text-base"
+                                        required>
+                                </div>
+                            </div>
+                            <button type="submit"
+                                class="w-full p-3 bg-primary hover:bg-primary-dark text-white rounded-lg transition mt-6">
+                                SigUp
+                            </button>
+                        </form>
+                        <p class="block text-sm font-medium mt-5">Already have an account?<span
+                                class="bg-primary hover:bg-primary-dark p-2 m-2 rounded-lg transition" id="">Sign
+                                in</span>
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <!--Profile Drawer-->
+
+
+
+
+
+
+
+
+
+            <!-- Shopping Cart Drawer -->
+            <div id="cartDrawer" class="fixed inset-y-0 right-0 w-full sm:w-96 z-40 cart-drawer closed">
+                <div class="h-full bg-white dark:bg-gray-800 shadow-lg flex flex-col">
+                    <div class="p-4 border-b dark:border-gray-700 flex justify-between items-center">
+                        <h2 class="text-xl font-bold">Your Cart</h2>
+                        <button id="closeCartButton"
+                            class="p-1 text-gray-500 hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-100">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                    </div>
+
+                    <div id="cartItems" class="flex-grow overflow-y-auto p-4 space-y-4">
+                        <!-- Cart items will be dynamically inserted here -->
+                    </div>
+
+                    <div id="emptyCart" class="flex-grow flex flex-col items-center justify-center p-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-gray-400" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                        </svg>
+                        <p class="mt-4 text-gray-500 dark:text-gray-400 text-center">Your cart is empty</p>
+                        <button id="startShoppingBtn"
+                            class="mt-4 px-4 py-2 bg-primary hover:bg-primary-dark text-white rounded-lg transition">
+                            Start Shopping
+                        </button>
+                    </div>
+
+                    <div class="p-4 border-t dark:border-gray-700">
+                        <div class="flex justify-between mb-4">
+                            <span class="font-medium">Subtotal:</span>
+                            <span id="cartSubtotal" class="font-bold">$0.00</span>
+                        </div>
+                        <button id="checkoutButton"
+                            class="w-full py-3 bg-primary hover:bg-primary-dark text-white rounded-lg transition">
+                            Proceed to Checkout
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Overlay for cart drawer -->
+            <div id="overlay" class="fixed inset-0 z-30 bg-black bg-opacity-50 overlay hidden"></div>
+
+            <!-- Checkout Modal -->
+            <div id="checkoutModal" class="fixed inset-0 z-50 flex items-center justify-center hidden">
+                <div class="absolute inset-0 bg-black bg-opacity-50" id="checkoutOverlay"></div>
+                <div
+                    class="bg-white dark:bg-gray-800 rounded-lg max-w-lg w-full mx-4 max-h-[90vh] overflow-y-auto z-10 animate-fade-in">
+                    <div class="p-6">
+                        <div class="flex justify-between items-center mb-6">
+                            <h2 class="text-xl font-bold">Checkout</h2>
+                            <button id="closeCheckoutButton"
+                                class="p-1 text-gray-500 hover:text-gray-700 dark:text-gray-300 dark:hover:text-gray-100">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </button>
+                        </div>
+
+                        <form id="checkoutForm" class="space-y-4">
+                            <div class="space-y-4">
+                                <h3 class="font-medium text-lg">Contact Information</h3>
+                                <div>
+                                    <label for="email" class="block text-sm font-medium mb-1">Email</label>
+                                    <input type="email" id="email" name="email"
+                                        class="w-full px-4 py-2 border rounded-lg border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-primary-light text-base"
+                                        required>
+                                </div>
+                            </div>
+
+                            <div class="space-y-4 mt-6">
+                                <h3 class="font-medium text-lg">Shipping Address</h3>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div>
+                                        <label for="firstName" class="block text-sm font-medium mb-1">First Name</label>
+                                        <input type="text" id="firstName" name="firstName"
+                                            class="w-full px-4 py-2 border rounded-lg border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-primary-light text-base"
+                                            required>
+                                    </div>
+                                    <div>
+                                        <label for="lastName" class="block text-sm font-medium mb-1">Last Name</label>
+                                        <input type="text" id="lastName" name="lastName"
+                                            class="w-full px-4 py-2 border rounded-lg border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-primary-light text-base"
+                                            required>
+                                    </div>
+                                </div>
+                                <div>
+                                    <label for="address" class="block text-sm font-medium mb-1">Address</label>
+                                    <input type="text" id="address" name="address"
+                                        class="w-full px-4 py-2 border rounded-lg border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-primary-light text-base"
+                                        required>
+                                </div>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div>
+                                        <label for="city" class="block text-sm font-medium mb-1">City</label>
+                                        <input type="text" id="city" name="city"
+                                            class="w-full px-4 py-2 border rounded-lg border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-primary-light text-base"
+                                            required>
+                                    </div>
+                                    <div>
+                                        <label for="zipCode" class="block text-sm font-medium mb-1">ZIP Code</label>
+                                        <input type="text" id="zipCode" name="zipCode"
+                                            class="w-full px-4 py-2 border rounded-lg border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-primary-light text-base"
+                                            required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="space-y-4 mt-6">
+                                <h3 class="font-medium text-lg">Payment Information</h3>
+                                <div>
+                                    <label for="cardNumber" class="block text-sm font-medium mb-1">Card Number</label>
+                                    <input type="text" id="cardNumber" name="cardNumber"
+                                        placeholder="1234 5678 9012 3456"
+                                        class="w-full px-4 py-2 border rounded-lg border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-primary-light text-base"
+                                        required>
+                                </div>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div>
+                                        <label for="expiryDate" class="block text-sm font-medium mb-1">Expiry
+                                            Date</label>
+                                        <input type="text" id="expiryDate" name="expiryDate" placeholder="MM/YY"
+                                            class="w-full px-4 py-2 border rounded-lg border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-primary-light text-base"
+                                            required>
+                                    </div>
+                                    <div>
+                                        <label for="cvv" class="block text-sm font-medium mb-1">CVV</label>
+                                        <input type="text" id="cvv" name="cvv" placeholder="123"
+                                            class="w-full px-4 py-2 border rounded-lg border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-primary-light text-base"
+                                            required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="pt-4 border-t dark:border-gray-700 mt-6">
+                                <div class="flex justify-between mb-2">
+                                    <span>Subtotal:</span>
+                                    <span id="checkoutSubtotal">$0.00</span>
+                                </div>
+                                <div class="flex justify-between mb-2">
+                                    <span>Shipping:</span>
+                                    <span>$5.99</span>
+                                </div>
+                                <div class="flex justify-between font-bold text-lg mt-2">
+                                    <span>Total:</span>
+                                    <span id="checkoutTotal">$0.00</span>
+                                </div>
+                            </div>
+
+                            <button type="submit"
+                                class="w-full py-3 bg-primary hover:bg-primary-dark text-white rounded-lg transition mt-6">
+                                Place Order
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Order Confirmation Modal -->
+            <div id="confirmationModal" class="fixed inset-0 z-50 flex items-center justify-center hidden">
+                <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+                <div
+                    class="bg-white dark:bg-gray-800 rounded-lg max-w-md w-full mx-4 p-6 text-center animate-fade-in z-10">
+                    <div
+                        class="w-16 h-16 mx-auto mb-4 bg-green-100 dark:bg-green-900 rounded-full flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-green-500 dark:text-green-300"
+                            fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                    </div>
+                    <h2 class="text-2xl font-bold mb-2">Order Placed!</h2>
+                    <p class="text-gray-600 dark:text-gray-300 mb-6">Your order has been successfully placed. Thank you
+                        for shopping with us!</p>
+                    <div id="orderSummary" class="text-left bg-gray-50 dark:bg-gray-700 p-4 rounded-lg mb-6">
+                        <!-- Order summary details will be inserted here -->
+                    </div>
+                    <button id="continueShoppingBtn"
+                        class="px-6 py-2 bg-primary hover:bg-primary-dark text-white rounded-lg transition">
+                        Continue Shopping
+                    </button>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-gray-100 dark:bg-gray-800 py-6">
+            <div class="container mx-auto px-4">
+                <div class="text-center text-gray-600 dark:text-gray-400">
+                    <p>© 2023 ShopEase. All rights reserved.</p>
+                    <p class="mt-2 text-sm">CopyRight@ bestigbkele.</p>
+                </div>
+            </div>
+        </footer>
+        <script src="jquery-1.11.0.min.js"></script>
+        <script src="main.js"></script>
+        <script src="dome_element.js"></script>
+        <script src="Gen.js"></script>
+        <script src="product_manager.js"></script>
+        <script src="cart_manager.js"></script>
+        <script src="auth.js"></script>
+        <script src="api.js"></script>
+        <script src="theme.js"></script>
+    </body>
+
+</html>
