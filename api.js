@@ -74,7 +74,7 @@ function cartFunc(params) {
 
                 quantity: 1
 
-            }
+            },
         ),
         headers: {
             'Content-Type': 'application/json'

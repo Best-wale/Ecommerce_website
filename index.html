@@ -90,9 +90,10 @@
                             </select>
                         </div>
                     </div>
+                    <!-- Categories -->
 
                     <!-- Categories -->
-                    <div class="categories-container mt-4 flex space-x-2 overflow-x-auto pb-2">
+                    <div class="categories-container mt-4 flex space-x-2 overflow-x-auto pb-2 justify-center">
                         <button class="category-btn px-4 py-2 rounded-full bg-primary text-white whitespace-nowrap"
                             data-category="">All Products</button>
                         <button
@@ -113,6 +114,40 @@
                     </div>
                 </div>
             </div>
+            <!-- Hero Header -->
+            <section class="relative bg-gradient-to-r from-blue-500 to-purple-600 text-white py-20">
+                <div class="container mx-auto px-4 flex flex-col md:flex-row items-center">
+                    <!-- Left Content -->
+                    <div class="md:w-1/2 text-center md:text-left">
+                        <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-6">
+                            Welcome to <span class="text-yellow-300">ShopEase</span>
+                        </h1>
+                        <p class="text-lg md:text-xl mb-6">
+                            Discover the best deals on electronics, clothing, home essentials, and more. Shop now and
+                            enjoy exclusive discounts!
+                        </p>
+                        <div class="flex justify-center md:justify-start space-x-4">
+                            <a href="#productsContainer"
+                                class="px-6 py-3 bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold rounded-lg shadow-lg transition">
+                                Shop Now
+                            </a>
+                            <a href="#categories"
+                                class="px-6 py-3 bg-white hover:bg-gray-100 text-blue-600 font-semibold rounded-lg shadow-lg transition">
+                                Explore Categories
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Right Image -->
+                    <div class="md:w-1/2 mt-10 md:mt-0 flex justify-center">
+                        <img src="hero.png" alt="Shopping Illustration" class="w-full max-w-md rounded-lg shadow-lg">
+                    </div>
+                </div>
+
+                <!-- Decorative Shapes -->
+                <div class="absolute top-0 left-0 w-32 h-32 bg-yellow-300 rounded-full opacity-30 blur-lg"></div>
+                <div class="absolute bottom-0 right-0 w-48 h-48 bg-purple-700 rounded-full opacity-20 blur-lg"></div>
+            </section>
 
             <!-- Product Listing -->
             <section class="py-8">
@@ -465,11 +500,83 @@
         </main>
 
         <!-- Footer -->
-        <footer class="bg-gray-100 dark:bg-gray-800 py-6">
+        <!-- Footer -->
+        <footer class="bg-gray-100 dark:bg-gray-800 py-10">
             <div class="container mx-auto px-4">
-                <div class="text-center text-gray-600 dark:text-gray-400">
-                    <p>© 2023 ShopEase. All rights reserved.</p>
-                    <p class="mt-2 text-sm">CopyRight@ bestigbkele.</p>
+                <!-- Footer Top -->
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                    <!-- About Us -->
+                    <div>
+                        <h3 class="text-lg font-bold text-gray-800 dark:text-gray-200 mb-4">About ShopEase</h3>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm">
+                            ShopEase is your one-stop shop for the best deals on electronics, clothing, home essentials,
+                            and more. We bring convenience and quality to your shopping experience.
+                        </p>
+                    </div>
+
+                    <!-- Quick Links -->
+                    <div>
+                        <h3 class="text-lg font-bold text-gray-800 dark:text-gray-200 mb-4">Quick Links</h3>
+                        <ul class="space-y-2">
+                            <li><a href="#productsContainer"
+                                    class="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary-light text-sm">Shop
+                                    Now</a></li>
+                            <li><a href="#categories"
+                                    class="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary-light text-sm">Categories</a>
+                            </li>
+                            <li><a href="#about"
+                                    class="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary-light text-sm">About
+                                    Us</a></li>
+                            <li><a href="#contact"
+                                    class="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary-light text-sm">Contact
+                                    Us</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Customer Support -->
+                    <div>
+                        <h3 class="text-lg font-bold text-gray-800 dark:text-gray-200 mb-4">Customer Support</h3>
+                        <ul class="space-y-2">
+                            <li><a href="#faq"
+                                    class="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary-light text-sm">FAQs</a>
+                            </li>
+                            <li><a href="#returns"
+                                    class="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary-light text-sm">Returns
+                                    & Refunds</a></li>
+                            <li><a href="#shipping"
+                                    class="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary-light text-sm">Shipping
+                                    Info</a></li>
+                            <li><a href="#terms"
+                                    class="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary-light text-sm">Terms
+                                    & Conditions</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Newsletter -->
+                    <div>
+                        <h3 class="text-lg font-bold text-gray-800 dark:text-gray-200 mb-4">Stay Connected</h3>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">
+                            Subscribe to our newsletter for the latest updates and offers.
+                        </p>
+                        <form class="flex space-x-2">
+                            <input type="email" placeholder="Enter your email"
+                                class="w-full px-4 py-2 border rounded-lg border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-primary dark:focus:ring-primary-light text-sm">
+                            <button type="submit"
+                                class="px-4 py-2 bg-primary hover:bg-primary-dark text-white rounded-lg transition text-sm">
+                                Subscribe
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Footer Bottom -->
+                <div class="mt-10 border-t border-gray-300 dark:border-gray-700 pt-6 text-center">
+                    <p class="text-gray-600 dark:text-gray-400 text-sm">
+                        © 2025 ShopEase. All rights reserved.
+                    </p>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm mt-2">
+                        Designed by <span class="text-primary dark:text-primary-light font-semibold">bestigbkele</span>.
+                    </p>
                 </div>
             </div>
         </footer>

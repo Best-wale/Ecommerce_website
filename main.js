@@ -180,7 +180,7 @@ function init() {
             button.classList.add('bg-primary', 'text-white');
 
             currentCategory = button.dataset.category;
-            productHeading.textContent = currentCategory === "all" ? "All Products" : `${currentCategory.charAt(0).toUpperCase() + currentCategory.slice(1)}`;
+            productHeading.textContent = currentCategory === "" ? "All Products" : `${currentCategory.charAt(0).toUpperCase() + currentCategory.slice(1)}`;
             displayProducts();
         });
     });
