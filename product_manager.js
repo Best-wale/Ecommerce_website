@@ -39,9 +39,9 @@ function displayProducts(products) {
                     <h3 class="font-medium text-lg mb-1 truncate-2 h-14">${product.name}</h3>
                     <div class="flex items-center mb-2">
                         ${generateStarRating(4)}
-                        <span class="text-sm text-gray-500 dark:text-gray-400 ml-1">(${product.rating})</span>
+                        <span class="text-sm text-gray-500 dark:text-gray-400 ml-1">(${5})</span>
                     </div>
-                    <p class="font-bold text-lg text-primary dark:text-primary-light">$${product.price}</p>
+                    <p class="font-bold text-lg text-primary dark:text-primary-light">₦${product.price}</p>
                     <button class="add-to-cart-btn mt-3 w-full py-2 bg-primary hover:bg-primary-dark text-white rounded-lg transition" data-id="${product.id}">
                         Add to Cart
                     </button>
@@ -60,6 +60,7 @@ function displayProducts(products) {
             // Add click event for add to cart button
             productCard.querySelector('.add-to-cart-btn').addEventListener('click', () => {
                 addToCart(product);
+                cartFunc(product);
             });
 
             productsContainer.appendChild(productCard);
@@ -90,7 +91,7 @@ function showProductDetails(product) {
                 ${generateStarRating(product.rating)}
                 <span class="text-sm text-gray-500 dark:text-gray-400 ml-1">(${product.rating})</span>
             </div>
-            <p class="font-bold text-xl text-primary dark:text-primary-light">$${product.price}</p>
+            <p class="font-bold text-xl text-primary dark:text-primary-light">₦${product.price}</p>
             <p class="text-gray-700 dark:text-gray-300 my-3">${product.description}</p>
             
             <div class="mt-6 flex items-center">
@@ -147,6 +148,7 @@ function showProductDetails(product) {
         const quantity = parseInt(quantityInput.value);
         for (let i = 0; i < quantity; i++) {
             addToCart(product);
+            cartFunc(product);
         }
         productModal.classList.add('hidden');
     });

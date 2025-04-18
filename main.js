@@ -116,7 +116,7 @@
 //press enter to search product
 
 $(document).ready(function () {
-    cartFunc();
+
     ApiCall();
     // Search bar: Press Enter to search product
     // Select all buttons with the class "category-btn"

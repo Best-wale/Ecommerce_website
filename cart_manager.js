@@ -44,17 +44,18 @@ function updateCartBadge() {
 
 // Update Cart UI
 function updateCartUI() {
+
     if (cart.length === 0) {
         cartItems.classList.add('hidden');
         emptyCart.classList.remove('hidden');
-        cartSubtotal.textContent = "$0.00";
+        cartSubtotal.textContent = "₦0.00";
     } else {
         cartItems.classList.remove('hidden');
         emptyCart.classList.add('hidden');
 
         // Calculate subtotal
-        const subtotal = cart.reduce((sum, item) => sum + item.price, 0);
-        cartSubtotal.textContent = `$${subtotal}`;
+        const subtotal = cart.reduce((sum, item) => sum + parseFloat(item.price), 0);
+        cartSubtotal.textContent = `₦${subtotal}`;
 
         // Update cart items
         cartItems.innerHTML = '';
@@ -83,9 +84,9 @@ function updateCartUI() {
                     <h4 class="font-medium text-sm">${item.name}</h4>
                     <div class="flex justify-between items-center mt-1">
                         <span class="text-sm text-gray-600 dark:text-gray-400">
-                            $${item.price} × ${item.quantity}
+                            ₦${item.price} × ${item.quantity}
                         </span>
-                        <span class="font-medium">$${(item.price * item.quantity).toFixed(2)}</span>
+                        <span class="font-medium">₦${(item.price * item.quantity)}</span>
                     </div>
                     <div class="mt-2 flex space-x-2">
                         <button class="remove-item-btn text-sm text-red-500 hover:text-red-700 dark:hover:text-red-400" data-id="${item.id}">
@@ -122,13 +123,13 @@ function checkout() {
     toggleCart();
 
     // Calculate totals
-    const subtotal = cart.reduce((sum, item) => sum + item.price, 0);
+    const subtotal = cart.reduce((sum, item) => sum + parseFloat(item.price), 0);
     const shipping = 5.99;
     const total = subtotal + shipping;
 
     // Update checkout totals
-    checkoutSubtotal.textContent = `$${subtotal}`;
-    checkoutTotal.textContent = `$${total}`;
+    checkoutSubtotal.textContent = `₦${subtotal}`;
+    checkoutTotal.textContent = `₦${total}`;
 
     // Show checkout modal
     checkoutModal.classList.remove('hidden');
@@ -142,7 +143,7 @@ function completeOrder(e) {
     checkoutModal.classList.add('hidden');
 
     // Calculate order totals
-    const subtotal = cart.reduce((sum, item) => sum + item.price, 0);
+    const subtotal = cart.reduce((sum, item) => sum + parseFloat(item.price), 0);
     const shipping = 5.99;
     const total = subtotal + shipping;
 
@@ -170,7 +171,7 @@ function completeOrder(e) {
         summaryHTML += `
             <div class="flex justify-between">
                 <span>${item.quantity} × ${item.name}</span>
-                <span>$${(item.price * item.quantity).toFixed(2)}</span>
+                <span>$${(item.price * item.quantity)}</span>
             </div>
         `;
     });
@@ -180,15 +181,15 @@ function completeOrder(e) {
             <div class="border-t dark:border-gray-600 pt-2 space-y-1">
                 <div class="flex justify-between">
                     <span>Subtotal:</span>
-                    <span>$${subtotal.toFixed(2)}</span>
+                    <span>₦${subtotal}</span>
                 </div>
                 <div class="flex justify-between">
                     <span>Shipping:</span>
-                    <span>$${shipping.toFixed(2)}</span>
+                    <span>₦${shipping}</span>
                 </div>
                 <div class="flex justify-between font-bold">
                     <span>Total:</span>
-                    <span>$${total.toFixed(2)}</span>
+                    <span>₦${total}</span>
                 </div>
             </div>
         </div>

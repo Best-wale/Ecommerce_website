@@ -28,51 +28,20 @@ function ApiCall(category = "", search = "") {
 
 
 
-
-
-
-
-
-
-
-function CartCall(params) {
+function cartFunc(product) {
     // Construct query string dynamically
-
+    const productId = product.id;
+    const quantity = 1;
     // API Endpoint
-    const apiEndpoint = `https://bestwale.pythonanywhere.com/ecommerce/carts/1`;
-    // AJAX Call
-    $.ajax({
-        url: apiEndpoint,
-        method: "GET",
-        dataType: "json",
-        success: function (data) {
-            console.log(data); // Log the API response
-
-        },
-        error: function (error) {
-            console.error("Error fetching products:", error);
-            displayProducts(); // Fallback to local products
-        }
-    });
-}
-
-
-
-
-function cartFunc(params) {
-    // Construct query string dynamically
-
-    // API Endpoint
-    const apiEndpoint = `https://bestwale.pythonanywhere.com/ecommerce/carts/add_item/`;
+    const apiEndpoint = `https://bestwale.pythonanywhere.com/ecommerce/cart/`;
     // AJAX Call
     $.ajax({
         url: apiEndpoint,
         method: "POST",
         data: JSON.stringify(
             {
-                product_id: 1,
-
-                quantity: 1
+                product: productId,
+                quantity: quantity
 
             },
         ),
