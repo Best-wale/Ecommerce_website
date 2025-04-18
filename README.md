@@ -54,7 +54,7 @@ Welcome to the **ShopEase**! This is a fully functional eCommerce frontend appli
 
 ### Prerequisites
 - A modern web browser (e.g., Chrome, Firefox, Edge).
-- view app [(https://best-wale.github.io/Ecommerce_website/)]
+-  [View app](https://best-wale.github.io/Ecommerce_website/)
 
 ### Steps
 1. Clone the repository:
