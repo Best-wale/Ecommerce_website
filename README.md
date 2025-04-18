@@ -110,6 +110,6 @@ This project is licensed under the MIT License.
 
 For questions or feedback, feel free to reach out:
 - **Email**: bwale974@gmail.com
-- **GitHub**: [your-username](https://github.com/best-wale)
+- **GitHub**: [wale](https://github.com/best-wale)
 
 Enjoy shopping with the **ShopEase**! 🎉
