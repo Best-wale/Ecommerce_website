@@ -54,20 +54,15 @@ Welcome to the **ShopEase**! This is a fully functional eCommerce frontend appli
 
 ### Prerequisites
 - A modern web browser (e.g., Chrome, Firefox, Edge).
-- A local server (e.g., [Live Server](https://best-wale.github.io/Ecommerce_website/) for VS Code) to run the app.
+- view app [(https://best-wale.github.io/Ecommerce_website/)]
 
 ### Steps
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/shopping-app.git
+   git clone https://github.com/Best-wale/Ecommerce_website.git
    ```
-2. Navigate to the project directory:
-   ```bash
-   cd shopping-app
-   ```
-3. Open the project in your code editor or run it on a local server.
 
----
+
 
 ## Usage
 
